@@ -1,0 +1,40 @@
+#:include kv/homescreen.kv
+#:import utils kivy.utils
+
+Screen:
+    MDToolbar :
+        id: titlename
+        title : 'BUSCA SUS'
+        left_action_items : [["menu", lambda x : nav_drawer.toggle_nav_drawer()]]
+        md_bg_color: app.theme_cls.primary_color
+        elevation : 8
+        pos_hint: {"top": 1, "left": 1}
+        size_hint: 1, .1
+
+    NavigationLayout :
+        ScreenManager :
+            id: screen_manager
+            size_hint: 1, 1
+            pos_hint: {"top": 1, "left": 1}
+            HomeScreen:
+                name: "home_screen"
+                id: home_screen
+        MDNavigationDrawer :
+            id : nav_drawer   
+            BoxLayout : 
+                orientation : 'vertical'
+                spacing : '8dp'
+                padding : '8dp'
+                ImageButton:
+                    id: profile
+                    source: app.img_source_path
+                    canvas.before:
+                        Color:
+                            rgb: app.theme_cls.primary_color if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    on_release:
+                        nav_drawer.toggle_nav_drawer()
+                        app.change_screen("profilephoto_screen", direction='right', mode='push')
+         
