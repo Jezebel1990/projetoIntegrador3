@@ -59,6 +59,6 @@ def change_screen(self, screen_name, direction='forward', mode = ""):
         screen_manager.current = screen_name
  
         if screen_name == "home_screen":
-            self.root.ids.titlename.title = "BUSCA SUS"   
+            self.root.ids.titlename.title = "Aqui tem medicamento"   
  
 MainApp().run()
